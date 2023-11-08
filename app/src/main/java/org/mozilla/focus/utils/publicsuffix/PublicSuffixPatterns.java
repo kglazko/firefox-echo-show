@@ -5,6 +5,7 @@
 package org.mozilla.focus.utils.publicsuffix;
 
 import android.content.Context;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedReader;
@@ -30,7 +31,7 @@ class PublicSuffixPatterns {
                     new BufferedInputStream(context.getAssets().open("publicsuffixlist"))));
 
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(reader, 5_000_000)) != null) {
                 EXACT.add(line);
             }
 

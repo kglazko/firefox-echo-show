@@ -4,6 +4,7 @@ import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RawRes;
+import io.github.pixee.security.BoundedLineReader;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -31,7 +32,7 @@ public class HtmlLoader {
             final StringBuilder outputBuffer = new StringBuilder();
 
             String line;
-            while ((line = fileReader.readLine()) != null) {
+            while ((line = BoundedLineReader.readLine(fileReader, 5_000_000)) != null) {
                 if (substitutionTable != null) {
                     for (final Map.Entry<String, String> entry : substitutionTable.entrySet()) {
                         line = line.replace(entry.getKey(), entry.getValue());
