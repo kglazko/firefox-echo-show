@@ -58,7 +58,7 @@ public class BlocklistProcessor {
         while (reader.hasNext()) {
             final String name = reader.nextName();
 
-            if (name.equals("categories")) {
+            if ("categories".equals(name)) {
                 extractCategories(reader, categoryMap, listType);
             } else {
                 reader.skipValue();
@@ -118,7 +118,7 @@ public class BlocklistProcessor {
 
             if (IGNORED_CATEGORIES.contains(categoryName)) {
                 reader.skipValue();
-            } else if (categoryName.equals(DISCONNECT)) {
+            } else if (DISCONNECT.equals(categoryName)) {
                 // We move these items into a different list, see below
                 ListCallback callback = new ListCallback(socialOverrides, DISCONNECT_MOVED);
                 extractCategory(reader, callback);

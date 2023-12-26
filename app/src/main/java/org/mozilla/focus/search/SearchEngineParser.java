@@ -67,11 +67,11 @@ import java.nio.charset.StandardCharsets;
 
             final String tag = parser.getName();
 
-            if (tag.equals("ShortName")) {
+            if ("ShortName".equals(tag)) {
                 readShortName(parser, searchEngine);
-            } else if (tag.equals("Url")) {
+            } else if ("Url".equals(tag)) {
                 readUrl(parser, searchEngine);
-            } else if (tag.equals("Image")) {
+            } else if ("Image".equals(tag)) {
                 readImage(parser, searchEngine);
             } else {
                 skip(parser);
@@ -95,7 +95,7 @@ import java.nio.charset.StandardCharsets;
 
             final String tag = parser.getName();
 
-            if (tag.equals("Param")) {
+            if ("Param".equals(tag)) {
                 final String name = parser.getAttributeValue(null, "name");
                 final String value = parser.getAttributeValue(null, "value");
                 uri = uri.buildUpon().appendQueryParameter(name, value).build();
@@ -105,9 +105,9 @@ import java.nio.charset.StandardCharsets;
             }
         }
 
-        if (type.equals(URLTYPE_SEARCH_HTML)) {
+        if (URLTYPE_SEARCH_HTML.equals(type)) {
             // Prefer mobile URIs.
-            if (rel != null && rel.equals(URL_REL_MOBILE)) {
+            if (rel != null && URL_REL_MOBILE.equals(rel)) {
                 searchEngine.resultsUris.add(0, uri);
             } else {
                 searchEngine.resultsUris.add(uri);
