@@ -47,7 +47,7 @@ import java.util.ArrayList;
         while (reader.hasNext()) {
             final String itemName = reader.nextName();
 
-            if (itemName.equals("properties")) {
+            if ("properties".equals(itemName)) {
                 reader.beginArray();
 
                 while (reader.hasNext()) {
@@ -55,7 +55,7 @@ import java.util.ArrayList;
                 }
 
                 reader.endArray();
-            } else if (itemName.equals("resources")) {
+            } else if ("resources".equals(itemName)) {
                 reader.beginArray();
 
                 while (reader.hasNext()) {
